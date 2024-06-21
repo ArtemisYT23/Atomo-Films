@@ -9,4 +9,11 @@ export type Movie = {
     vote_average: number;
     vote_count: number;
     video: boolean;
+    release_date: string;
+    genres: Genre[];
+}
+
+type Genre = {
+    id: number;
+    name: string;
 }

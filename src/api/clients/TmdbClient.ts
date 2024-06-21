@@ -12,4 +12,16 @@ export class TmdbClient extends Api {
       const { data } = await this.http.get(URL)
       return data
     }
+
+    public async getMovieById(id: string) {
+      const URL = `movie/${id}`
+      const { data } = await this.http.get(URL)
+      return data
+    }
+
+    public async getVideos(id: string) {
+      const URL = `movie/${id}/videos`
+      const { data } = await this.http.get(URL)
+      return data
+    }
 }

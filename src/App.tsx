@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { DefaultLayout } from '@/layouts'
-import { Home } from '@/pages'
+import { Home, Detail, Favorite } from '@/pages'
 
 const App: React.FC = () => {
   return (
@@ -20,6 +20,24 @@ const App: React.FC = () => {
           element={
             <DefaultLayout>
               <Home />
+            </DefaultLayout>
+          }
+        />
+
+        <Route
+          path="/moviedetail/:id"
+          element={
+            <DefaultLayout>
+              <Detail />
+            </DefaultLayout>
+          }
+        />
+
+        <Route
+          path="/favorite"
+          element={
+            <DefaultLayout>
+              <Favorite />
             </DefaultLayout>
           }
         />
