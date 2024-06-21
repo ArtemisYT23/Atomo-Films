@@ -14,5 +14,7 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    '@typescript-eslint/no-inferrable-types': 'off',
+    'no-var': 'error',
   },
 }
