@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from 'framer-motion'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import noimage from '@/assets/images/no-image.jpg'
 import { AiFillStar, AiOutlineStar} from 'react-icons/ai';
 import { Movie } from '@/types/MovieInfo'
@@ -47,7 +47,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
                 {(movie.vote_average||0) > 7 ? <h1 className='font-bold text-green-500 p-2 bg-zinc-900 rounded-full'>{(movie.vote_average||0).toFixed(1)}</h1> : (movie.vote_average||0) > 5.5 ? <h1 className='font-bold text-orange-400 p-2 bg-zinc-900 rounded-full'>{(movie.vote_average||0).toFixed(1)}</h1> : <h1 className='font-bold text-red-600 p-2 bg-zinc-900 rounded-full'>{(movie.vote_average||0).toFixed(1)}</h1>}
             </div>
 
-            {/* <Link to={`/moviedetail/${movie.id}`} className='h-full w-full shadow absolute z-10'></Link> */}
+            <Link to={`/moviedetail/${movie.id}`} className='h-full w-full shadow absolute z-10'></Link>
 
             <div>
                 {movie.poster_path === null ? <img className='img object-cover' src={noimage} /> :

@@ -10,33 +10,9 @@ const NavBar: React.FC = () => {
     const Navdata = [
         {
             id: 1,
-            headername: "Generes",
-            Name: "Generes",
-            link : "/"
-        },
-        {
-            id: 2,
-            headername: "Trending Movies",
-            Name: "Trending",
-            link:"/trending"
-        },
-        {
-            id: 3,
-            headername: "Upcoming Movies",
-            Name: "Upcoming",
-            link:"/upcoming"
-        },
-        {
-            id: 4,
             headername: "Favorite Movies",
             Name: "Favorites",
             link:"/favorite"
-        },
-        {
-            id: 5,
-            headername: "Anime",
-            Name: "Anime",
-            link:"/anime"
         }
     ]
 
