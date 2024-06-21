@@ -15,6 +15,7 @@ export class Api {
     const headers = {
       Accept: 'application/json',
       'content-type': 'application/json',
+      Authorization: 'Bearer ' + params.token,
     }
 
     if (params?.token) {
