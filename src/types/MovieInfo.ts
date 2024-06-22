@@ -11,6 +11,7 @@ export type Movie = {
     video: boolean;
     release_date: string;
     genres: Genre[];
+    runtime: number;
 }
 
 type Genre = {

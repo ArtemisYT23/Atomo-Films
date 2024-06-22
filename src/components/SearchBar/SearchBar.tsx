@@ -30,13 +30,12 @@ const SearchBar: React.FC = () => {
 
   return (
     <>
-      <div className="w-full h-[4rem] bg-black/90 md:bg-black flex justify-end items-center">
+      <div className="w-full h-[4rem] bg-[#10141e] flex justify-end items-center">
         <input
           type="search"
           name="searchpanel"
-          id="searchpanel"
-          placeholder="Search Movie"
-          className="p-2 w-full mx-5 md:w-[20rem] rounded-xl outline-none"
+          placeholder="🔎 Search Movie"
+          className="p-2 w-full mx-5 md:w-[20rem] rounded-xl outline-none text-left"
           onKeyUp={() => handleSearch()}
           value={value}
           onChange={(e) => setValue(e.target.value)}
