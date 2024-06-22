@@ -12,10 +12,10 @@ const Favorite: React.FC = () => {
 
   return (
     <>
-      <div className="w-full bg-[#10141e] md:p-10 mb-20 md:mb-0">
+      <div className="w-full min-h-screen bg-[#10141e] md:p-10 mb-20 md:mb-0">
         <motion.div
           layout
-          className="w-full md:p-2 flex flex-wrap relative justify-evenly md:justify-around"
+          className="w-full h-full md:p-2 flex flex-wrap relative justify-evenly md:justify-around"
         >
           <AnimatePresence>
             {Object.keys(localStorageData).filter(key => !isNaN(parseInt(key))).length == 0 ? (
