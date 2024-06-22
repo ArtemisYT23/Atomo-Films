@@ -23,7 +23,7 @@ const NavBar: React.FC = () => {
                 {activemobile ? <HiX /> : <HiMenuAlt1 />}
             </button>
 
-            <nav className={`${activemobile ? 'block' : 'hidden'} fixed bg-black/90 md:bg-black h-full w-full md:w-[14rem] z-30 md:block`}>
+            <nav className={`${activemobile ? 'block' : 'hidden'} fixed bg-[#10141e] md:bg-[#10141e] h-full w-full md:w-[14rem] z-30 md:block`}>
                 <motion.div
                     animate={{ scale: 1 }}
                     initial={{ scale: 0 }}
@@ -31,7 +31,7 @@ const NavBar: React.FC = () => {
                 >
                     <Link to="/" className="logo flex flex-col justify-center items-center m-7 gap-2" onClick={() => setActivemobile(!activemobile)}>
                         <img src={logo} alt="logo" className="w-20" />
-                        <h1 className="text-gray-400/70 font-bold text-2xl text-center">Atomo films</h1>
+                        <h1 className="text-gray-100/70 font-bold text-2xl text-center">Atomo films</h1>
                     </Link>
                 </motion.div>
 

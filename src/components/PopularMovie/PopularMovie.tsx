@@ -18,7 +18,7 @@ const PopularMovie = (props: Props) => {
         />
       </div>
       <div className="relative z-10 mx-auto max-w-[50%] flex flex-col gap-3 items-start md:mx-[55px] md:items-start md:text-left text-center">
-        <p className="text-white text-2xl md:text-3xl font-bold text-left text-[18px]">
+        <p className="text-white text-4xl md:text-4xl font-bold text-left text-[18px]">
           {props.movie.title}
         </p>
         <Link to={`/moviedetail/${props.movie.id}`}>
