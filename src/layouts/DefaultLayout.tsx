@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react'
 import { NavBar, SearchBar } from '@/components'
+import "./DefaultLayout.styles.css"
 
 interface DefaultLayoutProps {
   children: ReactNode
@@ -12,11 +13,10 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
         <NavBar />
       </div>
       <div className="flex flex-col w-full bg-[#10141e]">
-        <div className="h-[4rem] max-h-[4rem] w-full drop-shadow">
+        <div className="h-[4rem] max-h-[4rem] w-full">
           <SearchBar />
         </div>
-        <div className="flex w-full overflow-auto px-5 py-8 grow relative justify-center">
-
+        <div className="flex w-full overflow-auto px-4 grow relative justify-center custom-scrollbar">
           <div className="w-full sm:max-w-[1024px]">
           {children}
           </div>

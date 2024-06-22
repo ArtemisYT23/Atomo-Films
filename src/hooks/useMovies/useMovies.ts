@@ -7,7 +7,7 @@ const useMovies = () => {
   const { api } = useHttpClient()
   const [movies, setMovies] = useState<Movie[]>([])
   const [detailMovie, setDetailMovie] = useState<Movie | null>(null)
-  const [trailer, setTrailer] = useState<Trailer[] | null>(null)
+  const [trailer, setTrailer] = useState<Trailer | null>(null)
 
 
   const fetchMovies = async () => {
@@ -25,6 +25,7 @@ const useMovies = () => {
       setMovies(responseMovies.results)
     } catch (error) {
       console.log(error)
+      setMovies([])
     }
   }
 
@@ -34,15 +35,18 @@ const useMovies = () => {
       setDetailMovie(responseMovies);
     } catch (error) {
       console.log(error)
+      setDetailMovie(null)
     }
   };
 
   const fetchTrailers = async (id: string) => {
     try {
       const responseMovies = await api.client.getVideos(id)
-      setTrailer(responseMovies.results);
+      const firstTrailer = responseMovies?.results.find((video: Trailer) => video.type === 'Trailer')
+      firstTrailer ? setTrailer(firstTrailer) : setTrailer(null)
     } catch (error) {
       console.log(error)
+      setTrailer(null)
     }
   } 
 

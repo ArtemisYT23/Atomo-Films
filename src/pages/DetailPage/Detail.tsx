@@ -1,14 +1,15 @@
-import { useMovies } from '@/hooks'
 import React, { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useMovies } from '@/hooks'
 import noimage from '@/assets/images/no-image.jpg'
-import { useParams, Link } from 'react-router-dom'
 import { HiChevronLeft } from 'react-icons/hi'
 import { FaPlay } from 'react-icons/fa'
-import slugify from 'slugify'
+
 
 const Detail: React.FC = () => {
   const { id } = useParams()
   const { detailMovie, trailer, fetchMovieById, fetchTrailers } = useMovies()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (id) {
@@ -17,10 +18,16 @@ const Detail: React.FC = () => {
     }
   }, [])
 
+  const getDurationMovie = (time: number) => {
+    const hours = Math.floor(time / 60);
+    const minutes = time % 60;
+    return `${hours}h ${minutes}min`;
+  }
+
   return (
     <>
       <button
-        onClick={() => history.back()}
+        onClick={() => navigate('/')}
         className="fixed z-10 text-4xl text-black bg-white m-3 md:m-5 rounded-full"
       >
         <HiChevronLeft />
@@ -41,64 +48,72 @@ const Detail: React.FC = () => {
         )}
       </div>
 
-      <h2 className="text-white text-center pt-5 px-3 md:px-60 font-Roboto text-[18px]">
-        {detailMovie?.overview}
-      </h2>
+      <div className="w-full">
+        <p className="text-white text-2xl md:text-3xl pt-3 px-3 md:px-10 font-bold text-left text-[18px]">
+          Sipnosis
+        </p>
+        <h2 className="text-white text-justify pt-3 px-3 md:px-10 font-Roboto text-[18px]">
+          {detailMovie?.overview}
+        </h2>
 
-      <div className="text-blue-100 font-semibold my-3 flex justify-center">
-        <h2 className="bg-blue-600/30 border-2 border-blue-700 py-2 px-3 rounded-full">
-          Release Date : {detailMovie?.release_date}
+        <h2 className="text-white text-justify pt-6 px-3 md:px-10 font-Roboto text-[18px]">
+        <strong>Release Date :</strong> {detailMovie?.release_date}
+        </h2>
+
+        <h2 className="text-white text-justify pt-6 px-3 md:px-10 font-Roboto text-[18px]">
+        <strong>duration :</strong> {getDurationMovie(Number(detailMovie?.runtime))}
+        </h2>
+
+        <h2 className="text-white text-justify pt-6 px-3 md:px-10 font-Roboto text-[18px]">
+          <strong>Qualification :</strong> {detailMovie?.vote_average.toFixed(1)} ⭐
+        </h2>
+
+        <h2 className="text-white text-justify font-semibold pt-6 px-3 md:px-10 font-Roboto text-[18px]">
+          Genres:
         </h2>
       </div>
 
-      <div className="flex justify-center flex-wrap">
-        {detailMovie?.genres.map(tag => (
-          <>
+      <div className="flex justify-left md:px-10 flex-wrap">
+        {detailMovie?.genres.map((tag, index) => (
             <div
-              key={tag.id}
-              className="text-white font-semibold bg-gray-800 rounded-full px-4 py-1 m-2"
+              key={index}
+              className="text-white font-semibold bg-gray-800 rounded-full px-4 py-1 mr-2 mt-2"
             >
               {tag.name}
             </div>
-          </>
         ))}
       </div>
 
-      {trailer && (
-        <div className="flex justify-center items-center mb-10 gap-5 flex-wrap">
-          {Array.from(trailer)
-            .filter(trail => trail.type === 'Trailer')
-            .map((trail, index) => (
-              <>
-                <>
-                  <a
-                    key={trail.id}
-                    href={'https://www.youtube.com/watch?v=' + trail.key}
-                    target="_blank"
-                    className="flex border-2 border-red-600 bg-red-600/40 p-3 items-center justify-center gap-2 text-xl font-semibold rounded-full text-white"
-                  >
-                    <FaPlay />
-                    Watch trailer{' '}
-                    {Array.from(trailer).filter(trail => trail.type === 'Trailer').length > 1
-                      ? index + 1
-                      : ''}
-                  </a>
-                </>
-              </>
-            ))}
-        </div>
-      )}
+      <p className="text-white text-2xl md:text-3xl pt-6 px-3 md:px-10 font-bold text-left text-[18px]">
+        Trailer
+      </p>
+      <div className="w-full flex flex-col justify-center items-center">
+        <iframe
+          allowFullScreen
+          style={{
+            display: 'flex',
+            marginTop: '2rem',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '90%',
+            height: '80vh',
+          }}
+          src={`https://www.youtube.com/embed/${trailer?.key}`}
+        ></iframe>
+      </div>
 
       {detailMovie && (
-        <div className="flex justify-center items-center mb-10 gap-5 flex-wrap">
-          <Link
-            to={`/player/${id}/${slugify(detailMovie?.title as string)}`}
-            className="flex border-2 border-green-600 bg-green-600/40 p-3 items-center justify-center gap-2 text-xl font-semibold rounded-full text-white"
-          >
-            <FaPlay />
-            Watch Movie
-          </Link>
-        </div>
+        <>
+          <p className="text-white text-2xl md:text-3xl pt-6 px-3 md:px-10 font-bold text-left text-[18px]">
+            Watch movie
+          </p>
+          <div className="flex justify-center items-center mt-8 gap-5 flex-wrap">
+            <div className="flex border-2 border-green-600 bg-green-600/40 mb-10 p-3 items-center justify-center gap-2 text-xl font-semibold rounded-full text-white cursor-pointer">
+              <FaPlay />
+              Watch Movie
+            </div>
+          </div>
+        </>
       )}
     </>
   )
